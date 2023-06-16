@@ -1,6 +1,7 @@
 package com.example.simpleproject;
 
 import com.example.simpleproject.repository.JdbcMemberRepository;
+import com.example.simpleproject.repository.JdbcTemplateMemberRepository;
 import com.example.simpleproject.repository.MemberRepository;
 import com.example.simpleproject.repository.MemoryMemberRepository;
 import com.example.simpleproject.service.MemberService;
@@ -31,7 +32,8 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository(){
 //        return new MemoryMemberRepository();
-        return  new JdbcMemberRepository(dataSource);
+//        return  new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 
     // 상황에 따라 구현 클래스를 변경해야할때 쉽게 변경가능
