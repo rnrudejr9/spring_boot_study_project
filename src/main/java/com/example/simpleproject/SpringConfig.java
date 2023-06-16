@@ -14,31 +14,40 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
+//    jdbc 사용
 //    private DataSource dataSource;
 //    @Autowired
 //    public SpringConfig(DataSource dataSource) {
 //        this.dataSource = dataSource;
 //    }
 
-    private EntityManager em;
+//    jpa 사용
+//    private EntityManager em;
+//    @Autowired
+//    public SpringConfig(EntityManager em) {
+//        this.em = em;
+//    }
 
+    private final MemberRepository memberRepository;
+
+    //spring data jpa 에서 만든 구현체가 자동으로 들어와진다.
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService(){
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository(){
-//        return new MemoryMemberRepository();
-//        return new JdbcMemberRepository(dataSource);
-//        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
-    }
+//    @Bean
+//    public MemberRepository memberRepository(){
+////        return new MemoryMemberRepository();
+////        return new JdbcMemberRepository(dataSource);
+////        return new JdbcTemplateMemberRepository(dataSource);
+////        return new JpaMemberRepository(em);
+//    }
 
     // 상황에 따라 구현 클래스를 변경해야할때 쉽게 변경가능
     // 어떠한 코드를 손대지않고 JdbcMemberRepository 클래스를 두고 확장한것임
