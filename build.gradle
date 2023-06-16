@@ -25,6 +25,10 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.26' // 테스트 의존성 추가
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.26' // 테스트 의존성 추가
     annotationProcessor('org.projectlombok:lombok')
+
+    //jdbc 추가
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc';
+    runtimeOnly 'com.h2database:h2'
 }
 
 
