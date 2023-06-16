@@ -1,5 +1,6 @@
 package com.example.simpleproject;
 
+import com.example.simpleproject.aop.TimeTraceAop;
 import com.example.simpleproject.repository.*;
 import com.example.simpleproject.service.MemberService;
 import jakarta.persistence.EntityManager;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
+import java.sql.Time;
 
 //자바 코드로 직접 스프링 빈에 등록하는 방법
 
@@ -40,6 +42,11 @@ public class SpringConfig {
     public MemberService memberService(){
         return new MemberService(memberRepository);
     }
+
+//    @Bean
+//    public TimeTraceAop timeTraceAop(){
+//        return new TimeTraceAop();
+//    }
 
 //    @Bean
 //    public MemberRepository memberRepository(){

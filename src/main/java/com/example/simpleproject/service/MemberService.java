@@ -23,6 +23,9 @@ public class MemberService {
 //        중복제거
 //        cmd + art + v 자동변수완성
 //        옵셔널을 반환하는 것은 좋지 않다.
+
+//        AOP 관련 시간측정 로직을 작성하려하는데 핵심기능이 아닌 부분을 넣으려고한다.
+//        공통의 부분인 시간측정을 섞으면 유지보수가 어렵다.
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
