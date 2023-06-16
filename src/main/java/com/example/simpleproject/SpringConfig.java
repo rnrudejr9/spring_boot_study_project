@@ -1,10 +1,8 @@
 package com.example.simpleproject;
 
-import com.example.simpleproject.repository.JdbcMemberRepository;
-import com.example.simpleproject.repository.JdbcTemplateMemberRepository;
-import com.example.simpleproject.repository.MemberRepository;
-import com.example.simpleproject.repository.MemoryMemberRepository;
+import com.example.simpleproject.repository.*;
 import com.example.simpleproject.service.MemberService;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,13 +14,18 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-    private DataSource dataSource;
+//    private DataSource dataSource;
+//    @Autowired
+//    public SpringConfig(DataSource dataSource) {
+//        this.dataSource = dataSource;
+//    }
+
+    private EntityManager em;
 
     @Autowired
-    public SpringConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public SpringConfig(EntityManager em) {
+        this.em = em;
     }
-
 
     @Bean
     public MemberService memberService(){
@@ -32,8 +35,9 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository(){
 //        return new MemoryMemberRepository();
-//        return  new JdbcMemberRepository(dataSource);
-        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JdbcMemberRepository(dataSource);
+//        return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 
     // 상황에 따라 구현 클래스를 변경해야할때 쉽게 변경가능
