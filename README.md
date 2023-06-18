@@ -14,7 +14,6 @@
 ## 에러
 `fatal: index has modifications.  Cannot add.`
 
-### 깃 최신화
 1. git pull
 2. git add . 
 3. 처음 순서의 0번부터 다시 시작
