@@ -20,12 +20,15 @@ public class JpaMain {
                 em.persist(member);
             }
 
+            em.createQuery("update Member m set m.age = 20")
+                    .executeUpdate();
+
             List<Member> list = em.createQuery("select m from Member m order by m.age desc", Member.class)
                     .setFirstResult(0)
                     .setMaxResults(10)
                     .getResultList();
             for(Member m : list){
-                System.out.println(m.getUsername());
+                System.out.println(m.getAge() + " " + m.getUsername());
             }
 
             tx.commit();
